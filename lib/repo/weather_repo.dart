@@ -4,7 +4,7 @@ import 'package:app_test_for_auslogics/repo/moor_database.dart';
 import 'package:flutter/material.dart';
 import 'package:moor_flutter/moor_flutter.dart';
 
-import 'weather_api.dart';
+import '../api/weather_api.dart';
 import 'weathers_dao.dart';
 
 class WeatherRepo {

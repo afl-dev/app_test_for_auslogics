@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/main_bloc/main_bloc.dart';
 import 'bloc/simple_bloc_delegate.dart';
 import 'bloc/weather_bloc/weather_bloc.dart';
-import 'repo/weather_api.dart';
+import 'api/weather_api.dart';
 import 'repo/weather_repo.dart';
 import 'package:http/http.dart' as http;
 

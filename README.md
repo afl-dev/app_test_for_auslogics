@@ -1,6 +1,9 @@
 # app_test_for_auslogics
 
-A new Flutter project.
+Weather application, built-in video player
+bloc, http, rest, moor (sql)
+
+![](aus.gif)
 
 ## Getting Started
 
