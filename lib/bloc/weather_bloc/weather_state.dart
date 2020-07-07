@@ -14,8 +14,8 @@ class LoadedWeatherState extends WeatherState {
   final wmi.WeatherItem weatherModel;
   final DateTime dateTime;
   final String day;
-  final buttonNameLeft;
-  final buttonNameRight;
+  final String buttonNameLeft;
+  final String buttonNameRight;
 
   const LoadedWeatherState(
       {this.buttonNameLeft,
@@ -36,8 +36,8 @@ class ErrorStateWeatherState extends WeatherState {
   final wmi.WeatherItem weatherModel;
   final DateTime dateTime;
   final String day;
-  final buttonNameLeft;
-  final buttonNameRight;
+  final String buttonNameLeft;
+  final String buttonNameRight;
 
   const ErrorStateWeatherState(
       {this.buttonNameLeft,

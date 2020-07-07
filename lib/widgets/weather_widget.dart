@@ -30,7 +30,7 @@ class WeatherWidget extends StatelessWidget {
                 'Moscow',
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
               ),
-              Text('${DateFormat('dd-MM-yyyy').format(state.dateTime)}',
+              Text('${DateFormat('dd-MM-yyyy').format(state.dateTime as DateTime)}',
                   style: TextStyle(
                     fontSize: 10,
                   )),

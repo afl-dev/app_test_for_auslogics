@@ -16,7 +16,7 @@ class WeatherApi {
     final weatherResponse = await this.httpClient.get(weatherUrl);
 
     if (weatherResponse.statusCode == 200) {
-      final weatherJson = jsonDecode(weatherResponse.body);
+      final dynamic weatherJson = jsonDecode(weatherResponse.body);
       return WeatherItem.fromJson(weatherJson);
     } else {
       throw Exception('error getting weather for location');

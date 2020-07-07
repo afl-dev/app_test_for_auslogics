@@ -55,7 +55,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.dispose();
   }
 
-  _changeVideo(bool forward) {
+  void _changeVideo  (bool forward) {
     _videoBloc.add(LoadingVideoEvent());
     if (forward) {
       indexVideo++;
@@ -68,7 +68,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _initializeController(_controllers[indexVideo]);
   }
 
-  _initializeController(VideoPlayerController controller) async {
+  void _initializeController(VideoPlayerController controller) async {
     _controller = controller;
     _initializeVideoPlayerFuture = _controller.initialize();
     _initializeVideoPlayerFuture

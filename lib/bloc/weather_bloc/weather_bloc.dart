@@ -17,17 +17,17 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   WeatherBloc({@required this.weatherRepo}) : assert(weatherRepo != null);
 
-  static _weatherFromSqlModel({weatherHttp, day, index}) {
+   static Weather _weatherFromSqlModel({dynamic weatherHttp, String day, int index}) {
     return Weather(
         weatherState: weatherHttp.weatherState.toString(),
         minTemp: weatherHttp.minTemp.toString(),
         name: day,
-        formattedWeatherState: weatherHttp.formattedWeatherState,
-        created: weatherHttp.created,
+        formattedWeatherState: weatherHttp.formattedWeatherState.toString(),
+        created: weatherHttp.created.toString(),
         id: index,
         maxTemp: weatherHttp.maxTemp.toString(),
         temp: weatherHttp.temp.toString(),
-        lastUpdated: weatherHttp.lastUpdated);
+        lastUpdated: weatherHttp.lastUpdated as DateTime);
   }
 
   @override
@@ -39,13 +39,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   ) async* {
     if (event is GetWeatherEvent) {
       yield LoadingWeatherState();
-      var index;
-      var date;
-      var buttonNameLeft;
-      var buttonNameRight;
+      int index;
+      DateTime date;
+      String buttonNameLeft;
+      String buttonNameRight;
       var error = false;
       wmi.WeatherItem weatherHttp;
-      var weatherSelectedSql;
+      dynamic weatherSelectedSql;
       // Настраиваем параметры для UI
       switch (event.day) {
         case 'Yesterday':
@@ -92,20 +92,20 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
           try {
             weatherHttp = await weatherRepo?.getWeatherHttp(event.city, date);
             weather = _weatherFromSqlModel(
-                weatherHttp: weatherHttp, index: index, day: event.day);
+                weatherHttp: weatherHttp, index: index, day: event.day) as Weather;
             await weatherRepo?.insertWeather(weather);
           } catch (e) {
             throw Exception('error insertWeather $e');
           }
         } else {
           int diffDays =
-              weatherSelectedSql.lastUpdated.difference(DateTime.now()).inDays;
+              weatherSelectedSql.lastUpdated.difference(DateTime.now()).inDays as int;
 
           if (diffDays != 0) {
             try {
               weatherHttp = await weatherRepo?.getWeatherHttp(event.city, date);
               weather = _weatherFromSqlModel(
-                  weatherHttp: weatherHttp, index: index, day: event.day);
+                  weatherHttp: weatherHttp, index: index, day: event.day) as Weather;
               await weatherRepo?.updateWeather(weather);
             } catch (e) {
               throw ('error updateWeather $e');

@@ -13,7 +13,7 @@ class WeatherRepo {
 
   WeatherRepo({@required this.weatherApi}) : assert(weatherApi != null);
 
-  Future<Weather> select(id) => _dao.getWeather(id);
+  Future<Weather> select(int id) => _dao.getWeather(id);
 
   Future insertWeather(Weather weather) => _dao.insertWeather(weather);
 

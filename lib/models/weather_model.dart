@@ -37,7 +37,6 @@ class WeatherItem {
     this.created,
   });
 
-
   List<Object> get props => [
         weatherState,
         formattedWeatherState,
@@ -49,12 +48,13 @@ class WeatherItem {
       ];
 
   static WeatherItem fromJson(dynamic json) {
-    final consolidatedWeather = json[0];
+    final dynamic consolidatedWeather = json[0];
     return WeatherItem(
       weatherState:
-          _weatherCondition(consolidatedWeather['weather_state_abbr']),
-      created: consolidatedWeather['created'],
-      formattedWeatherState: consolidatedWeather['weather_state_name'],
+          _weatherCondition(consolidatedWeather['weather_state_abbr'] as String),
+      created: consolidatedWeather['created'] as String,
+      formattedWeatherState:
+          consolidatedWeather['weather_state_name'] as String,
       minTemp: consolidatedWeather['min_temp'] as double,
       maxTemp: consolidatedWeather['max_temp'] as double,
       temp: consolidatedWeather['the_temp'] as double,
@@ -64,7 +64,7 @@ class WeatherItem {
     );
   }
 
-  static WeatherState _weatherCondition(stateInput) {
+  static WeatherState _weatherCondition(String stateInput) {
     WeatherState state;
     switch (stateInput) {
       case 'sn':
@@ -103,17 +103,16 @@ class WeatherItem {
     return state;
   }
 
-  static WeatherItem returnWeatherForm (data) {
+  static WeatherItem returnWeatherForm(dynamic data) {
     return WeatherItem(
-        weatherState: enumFromString(
-            WeatherState.values, data.weatherState),
-        minTemp: double.parse(data.minTemp),
-        name: data.name,
-        formattedWeatherState: data.formattedWeatherState,
-        created: data.created,
-        id: data.id,
-        maxTemp: double.parse(data.maxTemp),
-        temp: double.parse(data.temp),
-        lastUpdated: data.lastUpdated);
+        weatherState: enumFromString(WeatherState.values, data.weatherState as String),
+        minTemp: double.parse(data.minTemp as String),
+        name: data.name as String,
+        formattedWeatherState: data.formattedWeatherState as String,
+        created: data.created as String,
+        id: data.id as int,
+        maxTemp: double.parse(data.maxTemp as String),
+        temp: double.parse(data.temp as String),
+        lastUpdated: data.lastUpdated as DateTime);
   }
 }
